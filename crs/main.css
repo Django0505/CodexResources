@@ -7,3 +7,7 @@
 	max-width: 64px;
 	max-height: 64px;
 }
+
+.media:nth-child(odd) {
+    background: #FFFAF0;
+}
