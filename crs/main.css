@@ -1,0 +1,9 @@
+.top-spacing{
+	padding-top: 10em;
+}
+
+.media-object{
+	border-radius: 100%;
+	max-width: 64px;
+	max-height: 64px;
+}
