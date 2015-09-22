@@ -4,7 +4,8 @@ var http = require('http').Server(app);
 var exphbs  = require('express-handlebars'),
     mysql = require('mysql'),
     session = require('express-session'),
-    myConnection = require('express-myconnection');
+    myConnection = require('express-myconnection'),
+    bodyParser = require('body-parser');
 
 var dbOptions = {
       host: 'localhost',
