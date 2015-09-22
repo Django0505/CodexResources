@@ -26,6 +26,10 @@ app.get('/', function(req, res, next){
     res.render('login');
 });
 
+app.post('/login', function(req, res, next){
+  res.redirect('/home')
+})
+
 app.get('/signup', function(req, res, next){
     res.render('signup');
 });

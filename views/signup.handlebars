@@ -8,27 +8,29 @@
 		<form class="form-horizontal  col-md-6 col-md-offset-3 jumbotron" action="login" method="POST">
 			<fieldset>
 				<span class="icon-preview col-lg-9 hidden-md hidden-sm hidden-xs" ><i class="mdi-action-account-circle"></i><span></span></span>
-				<legend class="col-lg-3 ">Sign In</legend>
+				<legend class="col-lg-3 ">Sign Up</legend>
 				<div class="form-group">
 					<label for="inputEmail" class="col-lg-2 control-label">Email</label>
 					<div class="col-lg-10">
-						<input type="email" class="form-control" id="focusedInput" required  placeholder="your codex email ..."></div>
+						<input name="username" type="email" class="form-control" id="focusedInput" required  placeholder="your codex email ..."></div>
 				</div>
 				<div class="form-group">
 					<label for="inputPassword" class="col-lg-2 control-label">Password</label>
 					<div class="col-lg-10">
-						<input type="password" class="form-control" id="inputPassword" required placeholder="Password">
+						<input name="new_password" type="password" class="form-control" id="inputPassword" required placeholder="New Password">
+						<br></div>
+				</div>
+
+				<div class="form-group">
+					<label for="inputPassword" class="col-lg-2 control-label">Confirm Password</label>
+					<div class="col-lg-10">
+						<input name="confirm_password" type="password" class="form-control" id="inputPassword" required placeholder="Re-enter Password">
 						<br></div>
 				</div>
 
 				<div class="form-group">
 					<div class="col-lg-3 col-lg-offset-9">
 						<button type="submit" class="btn btn-primary">Submit</button>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-lg-3 col-lg-offset-9">
-						<a href="/signup">Don't have an account? Sign up here</a>
 					</div>
 				</div>
 			</fieldset>
