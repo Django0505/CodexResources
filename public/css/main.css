@@ -1,5 +1,5 @@
 .top-spacing{
-	padding-top: 10em;
+	padding-top: 5em;
 }
 
 .media-object{
@@ -10,4 +10,9 @@
 
 .media:nth-child(odd) {
     background: #FFFAF0;
+}
+.navbar .navbar-brand{
+	background-image: url("/img/thumb.png");
+	background-size: cover;
+	
 }
