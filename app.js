@@ -4,7 +4,8 @@ var http = require('http').Server(app);
 var exphbs  = require('express-handlebars'),
     mysql = require('mysql'),
     session = require('express-session'),
-    myConnection = require('express-myconnection');
+    myConnection = require('express-myconnection'),
+    bodyParser = require('body-parser');
 
 var dbOptions = {
       host: 'localhost',
@@ -14,6 +15,10 @@ var dbOptions = {
       database: 'codexource'
 };
 
+app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+app.use(bodyParser.json());
+
 app.use(myConnection(mysql, dbOptions, 'pool'));
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -21,12 +26,21 @@ app.use(session({secret: "bookworms", cookie: {maxAge: 1000000}, resave:true, sa
 app.use(express.static('public'));
 
 
-app.get('/', function(req, res, next){
+app.get(['/', '/login'], function(req, res, next){
     res.render('login');
 });
 
+app.post('/login', function(req, res, next){
+  console.log(req.body)
+  res.redirect('/home')
+})
+
 app.get('/signup', function(req, res, next){
     res.render('signup');
+});
+
+app.post('/signup', function(req, res, next){
+    res.redirect('login');
 });
 
 app.get('/home', function(req, res, next){

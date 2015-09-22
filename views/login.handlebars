@@ -5,25 +5,29 @@
 	<div class = "col-xs-3"></div>
 </div>
 	<div class="row">
-		<form class="form-horizontal  col-md-6 col-md-offset-3 jumbotron" action="">
+		<form class="form-horizontal  col-md-6 col-md-offset-3 jumbotron" action="login" method="POST">
 			<fieldset>
 				<span class="icon-preview col-lg-9 hidden-md hidden-sm hidden-xs" ><i class="mdi-action-account-circle"></i><span></span></span>
 				<legend class="col-lg-3 ">Sign In</legend>
 				<div class="form-group">
 					<label for="inputEmail" class="col-lg-2 control-label">Email</label>
 					<div class="col-lg-10">
-						<input type="email" class="form-control" id="focusedInput" required  placeholder="your codex email ..."></div>
+						<input name='username' type="email" class="form-control" id="focusedInput" required  placeholder="your codex email ..."></div>
 				</div>
 				<div class="form-group">
 					<label for="inputPassword" class="col-lg-2 control-label">Password</label>
 					<div class="col-lg-10">
-						<input type="password" class="form-control" id="inputPassword" required placeholder="Password">
+						<input name='password' type="password" class="form-control" id="inputPassword" required placeholder="Password">
 						<br></div>
 				</div>
 
-				<div class="form-group">
-					<div class="col-lg-3 col-lg-offset-9">
-						<button type="submit" class="btn btn-primary">Submit</button>
+				<div class="row form-group">
+					<div class="col-lg-3 col-lg-offset-8">
+						<button type="submit" class="btn btn-primary">LogIn</button>
+					</div>
+				
+					<div class="col-lg-3 col-lg-offset-8">
+						<a href="/signup" class="btn btn-danger">Sign Up</a>
 					</div>
 				</div>
 			</fieldset>
