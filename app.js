@@ -25,13 +25,14 @@ app.get(['/', '/login'], function(req, res, next){
 
 app.get('/logout', function(req, res, next){
   //destroy session
-  
+
   res.render('login');
 })
 
 app.post('/login', function(req, res, next){
   console.log(req.body)
-  res.redirect('/home')
+  req.session.user = req.body
+  res.render('home', {user: req.session.user})
 })
 
 app.get('/signup', function(req, res, next){

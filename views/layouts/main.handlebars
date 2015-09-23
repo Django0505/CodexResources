@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="/css/main.css" />
 </head>
 <body>
+	{{#if user}}
 	<div class="navbar  navbar-default">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-default-collapse">
@@ -54,6 +55,7 @@
 			</ul>
 		</div>
 	</div>
+	{{/if}}
 	{{{body}}}
 	<!-- Latest compiled and minified JavaScript -->
   <script src = "/js/bootstrap.min.js"></script>
