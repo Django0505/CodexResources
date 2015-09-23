@@ -31,11 +31,11 @@ app.get('/signup', function(req, res, next){
 
 app.post('/signup', auth.addNewUser);
 
-app.get('/home', function(req, res, next){
+app.get('/home', auth.checkUser, function(req, res, next){
     res.render('home');
 });
 
-app.get('/posts', function(req, res, next){
+app.get('/posts', auth.checkUser, function(req, res, next){
     res.render('posts');
 });
 

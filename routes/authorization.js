@@ -89,3 +89,12 @@ exports.loginUser = function(req, res, next){
 		});
 	});
 };
+
+exports.checkUser = function(req, res, next){
+	if(req.session.user){
+		next();
+	}
+	else{
+		res.redirect('/');
+	}
+}
