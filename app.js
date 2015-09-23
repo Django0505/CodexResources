@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
-app.use(session({secret: "bookworms", cookie: {maxAge: 1000000}, resave:true, saveUninitialized: false}));
+app.use(session({secret: "bookworms", cookie: {maxAge: 10000}, resave:true, saveUninitialized: false}));
 app.use(express.static('public'));
 
 
@@ -23,7 +23,13 @@ app.get(['/', '/login'], function(req, res, next){
     res.render('login');
 });
 
-app.post('/login', auth.loginUser)
+app.post('/login', auth.loginUser);
+
+app.get('/logout', function(req, res, next){
+  //destroy session
+
+  res.render('login');
+})
 
 app.get('/signup', function(req, res, next){
     res.render('signup');
