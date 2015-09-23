@@ -23,10 +23,7 @@ app.get(['/', '/login'], function(req, res, next){
     res.render('login');
 });
 
-app.post('/login', function(req, res, next){
-  console.log(req.body)
-  res.redirect('/home')
-})
+app.post('/login', auth.loginUser)
 
 app.get('/signup', function(req, res, next){
     res.render('signup');
