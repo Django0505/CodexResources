@@ -2,24 +2,17 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var exphbs  = require('express-handlebars'),
-    mysql = require('mysql'),
+    MongoClient = require('mongodb').MongoClient,
     session = require('express-session'),
-    myConnection = require('express-myconnection'),
     bodyParser = require('body-parser');
 
-var dbOptions = {
-      host: 'localhost',
-      user: 'tarcode',
-      password: 'coder123',
-      port: 3306,
-      database: 'codexource'
-};
+var auth = require('./routes/authorization');
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
-app.use(myConnection(mysql, dbOptions, 'pool'));
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 app.use(session({secret: "bookworms", cookie: {maxAge: 1000000}, resave:true, saveUninitialized: false}));
@@ -40,7 +33,40 @@ app.get('/signup', function(req, res, next){
 });
 
 app.post('/signup', function(req, res, next){
-    res.redirect('login');
+
+  var MongoClient = require('mongodb').MongoClient;
+  
+  //Connect to mongodb [ConnectionURL]
+  var url = 'mongodb://localhost:27017/resource';
+
+  var inputData = JSON.parse(JSON.stringify(req.body));
+  
+  if(inputData.new_password == inputData.confirm_password){
+    
+    MongoClient.connect(url, function(err, db){
+      if(err){
+        console.log(err,"\n");
+      }
+
+      var collection = db.collection('students');
+      // Insert some documents 
+      collection.insert([
+        {username : inputData.username, password : inputData.new_password}
+      ], function(err, result) {
+        console.log("Inserted new user into the students collection");
+        console.log(result);
+        
+        res.redirect('/login')
+
+      });
+
+        db.close();
+    });
+  }
+  else{
+    res.render(signup, {msg : "Passwords must match!"});
+  }
+
 });
 
 app.get('/home', function(req, res, next){
