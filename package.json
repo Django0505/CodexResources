@@ -1,0 +1,20 @@
+{
+  "name": "CodeXource",
+  "version": "0.0.0",
+  "description": "Codex Resources App",
+  "main": "app.js",
+  "scripts": {
+    "test": ""
+  },
+  "author": "tarcode, pholisa, nkosi, mawande, e-manual",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "body-parser": "^1.14.0",
+    "express": "~4.13.1",
+    "express-handlebars": "~2.0.1",
+    "express-myconnection": "~1.0.4",
+    "express-session": "~1.11.3",
+    "mongodb": "^2.0.43",
+    "mysql": "~2.9.0"
+  }
+}

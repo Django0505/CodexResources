@@ -1,0 +1,18 @@
+.top-spacing{
+	padding-top: 5em;
+}
+
+.media-object{
+	border-radius: 100%;
+	max-width: 64px;
+	max-height: 64px;
+}
+
+.media:nth-child(odd) {
+    background: #FFFAF0;
+}
+.navbar .navbar-brand{
+	background-image: url("/img/thumb.png");
+	background-size: cover;
+	
+}
