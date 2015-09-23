@@ -30,7 +30,7 @@ exports.addNewUser = function(req, res, next){
     });
   }
   else{
-    res.render(signup, {msg : "Passwords must match!"});
+    res.render("signup", {msg : "Passwords must match!"});
   }
 
 };
