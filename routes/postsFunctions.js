@@ -28,3 +28,27 @@ exports.postArticle = function(req, res, next){
 		});
 	});
 };
+
+exports.showPosts = function(req, res, next){
+
+	MongoClient.connect(url, function(err, db){
+		if(err){
+		console.log(err,"\n");
+		}
+
+		var collection = db.collection('articles');
+		// Insert some documents
+		collection.find().toArray(function(err, result) {
+			if (err) {
+				console.log(err);
+			}
+			console.log(result);
+
+			db.close();
+				return res.render('home', {
+																		article:result,
+																		user:req.session.user
+				});
+		});
+	});
+};
