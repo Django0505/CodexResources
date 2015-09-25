@@ -8,7 +8,7 @@ var url = 'mongodb://localhost:27017/resource';
 //         console.log(err);
 //     }
 //     else {
-//          mongoInsert(db, 'user', user_default, function(user_res) { 
+//          mongoInsert(db, 'user', user_default, function(user_res) {
 //             console.log(user_res);
 //             db.close();
 //         });
@@ -33,22 +33,22 @@ var url = 'mongodb://localhost:27017/resource';
 exports.addNewUser = function(req, res, next){
 
   var inputData = JSON.parse(JSON.stringify(req.body));
-  
+
   if(inputData.new_password == inputData.confirm_password){
-    
+
     MongoClient.connect(url, function(err, db){
       if(err){
         console.log(err,"\n");
       }
 
       var collection = db.collection('students');
-      // Insert some documents 
+      // Insert some documents
       collection.insert(
         {username : inputData.username, password : inputData.new_password}
       , function(err, result) {
         console.log("Inserted new user into the students collection");
         console.log(result);
-        
+
         db.close();
 
         res.redirect('/login')
@@ -72,7 +72,7 @@ exports.loginUser = function(req, res, next){
 		}
 
 		var collection = db.collection('students');
-		// Insert some documents 
+		// Insert some documents
 		collection.find({username : inputData.username, password : inputData.password}).toArray(function(err, result) {
 			if (err) {
 				console.log(err);
@@ -84,7 +84,7 @@ exports.loginUser = function(req, res, next){
 			}
 			else{
 				req.session.user = inputData.username;
-				return res.redirect('/home');
+				return res.render('home', {user:req.session.user});
 			}
 		});
 	});
