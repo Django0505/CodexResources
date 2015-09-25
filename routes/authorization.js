@@ -84,7 +84,7 @@ exports.loginUser = function(req, res, next){
 			}
 			else{
 				req.session.user = inputData.username;
-				return res.render('home', {user:req.session.user});
+				return res.redirect('/home');
 			}
 		});
 	});

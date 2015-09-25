@@ -38,9 +38,7 @@ app.get('/signup', function(req, res, next){
 
 app.post('/signup', auth.addNewUser);
 
-app.get('/home', auth.checkUser, function(req, res, next){
-    res.render('home',{user: req.session.user});
-});
+app.get('/home', auth.checkUser, post.showPosts);
 
 app.get('/posts', auth.checkUser, function(req, res, next){
     res.render('posts', {user: req.session.user});
