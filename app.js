@@ -6,7 +6,8 @@ var exphbs  = require('express-handlebars'),
     session = require('express-session'),
     bodyParser = require('body-parser');
 
-var auth = require('./routes/authorization');
+var auth = require('./routes/authorization'),
+    post = require('./routes/postsFunctions');
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -48,6 +49,8 @@ app.get('/posts', auth.checkUser, function(req, res, next){
 app.get('/posts/new', auth.checkUser, function(req, res, next){
     res.render('newPost',{user: req.session.user});
 });
+
+app.post('/posts/new', auth.checkUser, post.postArticle);
 
 http.listen(3000, function(){
     console.log('listening on *: 3000');
