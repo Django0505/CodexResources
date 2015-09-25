@@ -14,5 +14,13 @@
 .navbar .navbar-brand{
 	background-image: url("/img/thumb.png");
 	background-size: cover;
-	
+
+}
+
+.postForm input{
+	width: 70%;
+}
+
+.bodyForm{
+	height: 7em;
 }
