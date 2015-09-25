@@ -38,11 +38,15 @@ app.get('/signup', function(req, res, next){
 app.post('/signup', auth.addNewUser);
 
 app.get('/home', auth.checkUser, function(req, res, next){
-    res.render('home');
+    res.render('home',{user: req.session.user});
 });
 
 app.get('/posts', auth.checkUser, function(req, res, next){
-    res.render('posts');
+    res.render('posts', {user: req.session.user});
+});
+
+app.get('/posts/new', auth.checkUser, function(req, res, next){
+    res.render('newPost',{user: req.session.user});
 });
 
 http.listen(3000, function(){

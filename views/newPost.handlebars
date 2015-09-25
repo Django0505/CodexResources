@@ -1,12 +1,19 @@
 <div class="container">
-	<form class="row" action = 'POST' method="/posts/newPost">
+	<form class="postForm" action = 'POST' method="/posts/new">
 
 			<div class="well">
-				<input type="text" name="heading" placeholder="Article Heading"></input>
-				<input type="text" name="content" placeholder="Article Body"></input>
+          <h4>Article Heading</h4>
+  				<input type="text" name="heading" placeholder="Article Heading"></input>
+        </br>
+        </br>
+          <h4>Article Body</h4>
+  				<input class = "bodyForm" type="text" name="content" placeholder="Article Body"></input>
+        </br>
+        </br>
+          <button type="submit">Submit</button>
+
 			</div><!-- /.well -->
 
-      <input type="submit">Submit</input>
 
 	</form><!-- /.row -->
 </div><!-- /.container -->
