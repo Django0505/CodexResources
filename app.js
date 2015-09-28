@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
-app.use(session({secret: "bookworms", cookie: {maxAge: 10000}, resave:true, saveUninitialized: false}));
+app.use(session({secret: "bookworms", cookie: {maxAge: 600000}, resave:true, saveUninitialized: false}));
 app.use(express.static('public'));
 
 
