@@ -17,7 +17,7 @@ exports.postArticle = function(req, res, next){
 		var collection = db.collection('articles');
 		// Insert some documents
 		collection.insert(
-			{heading : inputData.heading, content: inputData.content}
+			{heading : inputData.heading, content: inputData.content, user: req.session.user, date: Date()}
 			, function(err, result) {
 			// console.log("Inserted new post into the articles collection");
 			// console.log(result);
