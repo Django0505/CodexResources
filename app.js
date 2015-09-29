@@ -26,11 +26,7 @@ app.get(['/', '/login'], function(req, res, next){
 
 app.post('/login', auth.loginUser);
 
-app.get('/logout', function(req, res, next){
-  //destroy session
-
-  res.render('login');
-})
+app.get('/logout', auth.logoutUser)
 
 app.get('/signup', function(req, res, next){
     res.render('signup');

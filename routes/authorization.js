@@ -69,3 +69,10 @@ exports.checkUser = function(req, res, next){
 		res.redirect('/login');
 	}
 }
+
+exports.logoutUser = function(req, res, next){
+  //destroy session
+  delete req.session.user;
+  
+  res.redirect('login');
+}
