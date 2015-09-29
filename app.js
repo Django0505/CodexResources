@@ -41,6 +41,7 @@ app.post('/signup', auth.addNewUser);
 app.get('/home', auth.checkUser, post.showPosts);
 
 app.get('/post/:heading', auth.checkUser, post.fullPost);
+app.post('/post/:heading', auth.checkUser, post.commentOnPost);
 
 app.get('/posts/new', auth.checkUser, function(req, res, next){
     res.render('newPost',{user: req.session.user});
