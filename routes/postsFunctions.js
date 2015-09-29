@@ -123,11 +123,12 @@ exports.commentOnPost = function(req, res, next){
 
 		var inputData = JSON.parse(JSON.stringify(req.body));
 		var post_heading = req.params.heading;
+		var date = Date();
 
 		var collection = db.collection('comments');
 		// Insert some documents
 		collection.insert(
-			{"comment" : inputData.commentOnPost, article_heading : post_heading}
+			{"comment" : inputData.commentOnPost,"user": req.session.user, "date": date, article_heading : post_heading}
 			, function(err, result) {
 			if (err) {
 				console.log(err);
