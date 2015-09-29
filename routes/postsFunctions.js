@@ -24,7 +24,7 @@ exports.postArticle = function(req, res, next){
 
 			db.close();
 
-			res.redirect('/posts')
+			res.redirect('/home')
 		});
 	});
 };
@@ -63,6 +63,40 @@ exports.fullPost = function(req, res, next){
 		var post_heading = req.params.heading;
 
 		var collection = db.collection('articles');
+		var collection2 = db.collection('comments');
+		// Insert some documents
+		collection.find({"heading" : post_heading}).toArray(function(err, result1) {
+			if (err) {
+				console.log(err);
+			}
+			collection2.find({"article_heading": post_heading}).toArray(function(err, result2) {
+				if (err) {
+					console.log(err);
+				}
+				// console.log(result);
+
+				db.close();
+				console.log(result2);
+					res.render('post',
+						{
+							user: req.session.user,
+							article: result1,
+							comments : result2
+						});
+			});
+		});
+	});
+}
+exports.articleComments = function(req, res, next){
+
+	MongoClient.connect(url, function(err, db){
+		if(err){
+		console.log(err,"\n");
+		}
+
+		var post_heading = req.params.heading;
+
+		var collection = db.collection('comments');
 		// Insert some documents
 		collection.find({"heading" : post_heading}).toArray(function(err, result) {
 			if (err) {
@@ -71,10 +105,10 @@ exports.fullPost = function(req, res, next){
 			// console.log(result);
 
 			db.close();
-				res.render('post', 
+				res.render('post',
 					{
 						user: req.session.user,
-						article : result
+						comments : result
 					});
 		});
 	});
@@ -105,29 +139,3 @@ exports.commentOnPost = function(req, res, next){
 		});
 	});
 }
-
-exports.getPost = function(req, res, next){
-	MongoClient.connect(url, function(err, db){
-	if(err){
-	console.log(err,"\n");
-	}
-
-	var collection = db.collection('articles');
-	// Insert some documents
-	collection.find().toArray(function(err, result) {
-		if (err) {
-			console.log(err);
-		}
-		console.log(result);
-
-		db.close();
-			return res.render('posts',{
-					article:result,
-					user:req.session.user
-			});
-
-});
-
-});
-}
-
