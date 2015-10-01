@@ -19,6 +19,10 @@ exports.postArticle = function(req, res, next){
 		collection.insert(
 			{heading : inputData.heading, content: inputData.content, user: req.session.user, date: Date()}
 			, function(err, result) {
+
+				if (err) {
+					console.log(err);
+				};
 			// console.log("Inserted new post into the articles collection");
 			// console.log(result);
 
@@ -76,7 +80,7 @@ exports.fullPost = function(req, res, next){
 				// console.log(result);
 
 				db.close();
-				console.log(result2);
+				// console.log(result2);
 					res.render('post',
 						{
 							user: req.session.user,
