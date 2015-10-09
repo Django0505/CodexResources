@@ -1,8 +1,7 @@
 var MongoClient = require('mongodb').MongoClient;
 
 //Connect to mongodb [ConnectionURL]
-var url = 'mongodb://localhost:27017/resource';
-
+var url = 'mongodb://localhost:27017/CodeXsource';
 
 exports.postArticle = function(req, res, next){
 
@@ -14,7 +13,7 @@ exports.postArticle = function(req, res, next){
 			console.log(err,"\n");
 		}
 
-		var collection = db.collection('articles');
+		var collection = db.collection('Articles');
 		// Insert some documents
 		collection.insert(
 			{heading : inputData.heading, content: inputData.content, user: req.session.user, date: Date()}
@@ -40,7 +39,7 @@ exports.showPosts = function(req, res, next){
 		console.log(err,"\n");
 		}
 
-		var collection = db.collection('articles');
+		var collection = db.collection('Articles');
 		// Insert some documents
 		collection.find().toArray(function(err, result) {
 			if (err) {
@@ -66,8 +65,8 @@ exports.fullPost = function(req, res, next){
 
 		var post_heading = req.params.heading;
 
-		var collection = db.collection('articles');
-		var collection2 = db.collection('comments');
+		var collection = db.collection('Articles');
+		var collection2 = db.collection('Comments');
 		// Insert some documents
 		collection.find({"heading" : post_heading}).toArray(function(err, result1) {
 			if (err) {
@@ -91,6 +90,7 @@ exports.fullPost = function(req, res, next){
 		});
 	});
 }
+
 exports.articleComments = function(req, res, next){
 
 	MongoClient.connect(url, function(err, db){
@@ -100,7 +100,7 @@ exports.articleComments = function(req, res, next){
 
 		var post_heading = req.params.heading;
 
-		var collection = db.collection('comments');
+		var collection = db.collection('Comments');
 		// Insert some documents
 		collection.find({"heading" : post_heading}).toArray(function(err, result) {
 			if (err) {
@@ -129,7 +129,7 @@ exports.commentOnPost = function(req, res, next){
 		var post_heading = req.params.heading;
 		var date = Date();
 
-		var collection = db.collection('comments');
+		var collection = db.collection('Comments');
 		// Insert some documents
 		collection.insert(
 			{"comment" : inputData.commentOnPost,"user": req.session.user, "date": date, article_heading : post_heading}
