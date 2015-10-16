@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<title>Codex Resources</title>
+	<title>Codex Source</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<!-- Material minified -->
@@ -30,16 +30,18 @@
 					<a href="/home">Home</a>
 				</li>
 				<li>
-				    <a href="#" class="navbar-collapse collapse navbar-default-collapse dropdown-toggle" data-toggle="dropdown">Categories<span class="caret"></span></a>
-				    <ul class="dropdown-menu">
-				      <li><a href="#">Agile</a></li>
-				      <li><a href="#">Design</a></li>
-				      <li><a href="#">Language</a></li>
+				    <a href="#" id="topic" class="navbar-collapse collapse navbar-default-collapse dropdown-toggle" data-toggle="dropdown">Topics<span class="caret"></span></a>
+					  <ul id="listTopics" class="dropdown-menu">
+				      <li>{{Topics}}</li>
 				    </ul>
 		  	</li>
+				<li>
+					<a href="/posts/new">Add New Post</a>
+				</li>
 			</ul>
 			<form class="navbar-form navbar-left">
-				<input type="text" class="form-control col-lg-8" placeholder="Search"></form>
+				<input type="text" class="form-control col-lg-8" placeholder="Search">
+			</form>
 			<ul class="nav navbar-nav navbar-right">
 				<li>
 					<a href="#">{{user}}</a>
@@ -53,8 +55,9 @@
 	{{/if}}
 	{{{body}}}
 	<!-- Latest compiled and minified JavaScript -->
+	<script src = "/js/jquery.js"></script>
+	<script src = "/js/script.js"></script>
   <script src = "/js/bootstrap.min.js"></script>
-  <script src = "/js/jquery.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 	<!--Chosen-->

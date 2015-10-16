@@ -1,5 +1,7 @@
 var express = require('express');
-var app = express();
+var app = express(),
+    http = require('http').Server(app),
+    io = require('socket.io')(http);
 var http = require('http').Server(app);
 var exphbs  = require('express-handlebars'),
     MongoClient = require('mongodb').MongoClient,
@@ -34,7 +36,9 @@ app.get('/signup', function(req, res, next){
 
 app.post('/signup', auth.addNewUser);
 
-app.get('/home', auth.checkUser, post.showPosts);
+app.get('/showTopics', post.topicsToMenu)
+
+app.get('/home', auth.checkUser, post.showPosts, post.topicsToMenu);
 
 app.get('/post/:heading', auth.checkUser, post.fullPost);
 app.post('/post/:heading', auth.checkUser, post.commentOnPost);
@@ -46,6 +50,15 @@ app.get('/posts/new', auth.checkUser, function(req, res, next){
 
 app.post('/posts/new', auth.checkUser, post.postArticle);
 
-http.listen(3000, function(){
-    console.log('listening on *: 3000');
+
+
+var portNr = process.env.SHAKTI_PORT || 3000;
+
+var server = http.listen(portNr, function () {
+
+  var host = server.address().address;
+  var port = server.address().port;
+
+  console.log('CodeXsource app listening at http://%s:%s', host, port);
+
 });

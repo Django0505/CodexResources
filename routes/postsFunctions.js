@@ -1,4 +1,5 @@
 var MongoClient = require('mongodb').MongoClient;
+var io = require('socket.io');
 
 //Connect to mongodb [ConnectionURL]
 var url = 'mongodb://localhost:27017/CodeXsource';
@@ -141,6 +142,29 @@ exports.commentOnPost = function(req, res, next){
 
 			db.close();
 				res.redirect('/post/'+post_heading);
+		});
+	});
+}
+
+exports.topicsToMenu = function(req, res, next){
+
+	MongoClient.connect(url, function(err, db){
+		if(err){
+			console.log(err, "/n");
+		}
+
+		var collection = db.collection('Topics');
+		collection.find({}).toArray().then(function(results){
+			if(err){
+				 console.log(err);
+			}
+			db.close();
+
+			return res.render('topics', {
+				Topics: results,
+				layout: false
+			});
+
 		});
 	});
 }
