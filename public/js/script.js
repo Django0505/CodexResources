@@ -1,7 +1,7 @@
 $(function(){
     $(".chzn-select").chosen();
 
-    $("#topic").keydown(function(){
+    $("#topic").click(function(){
       $.get("/showTopics", function(results){
         $("#listTopics").html(results);
       });
