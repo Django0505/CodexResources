@@ -1,7 +1,7 @@
 var MongoClient = require('mongodb').MongoClient;
 
 //Connect to mongodb [ConnectionURL]
-var url = 'mongodb://localhost:27017/resource';
+var url = 'mongodb://localhost:27017/CodeXsource';
 
 exports.addNewUser = function(req, res, next){
 
@@ -14,7 +14,7 @@ exports.addNewUser = function(req, res, next){
         console.log(err,"\n");
       }
 
-      var collection = db.collection('students');
+      var collection = db.collection('Users');
       // Insert some documents
       collection.insert(
         {username : inputData.username, password : inputData.new_password}
@@ -42,7 +42,7 @@ exports.loginUser = function(req, res, next){
 		console.log(err,"\n");
 		}
 
-		var collection = db.collection('students');
+		var collection = db.collection('Users');
 		// Insert some documents
 		collection.find({username : inputData.username, password : inputData.password}).toArray(function(err, result) {
 			if (err) {
@@ -73,6 +73,6 @@ exports.checkUser = function(req, res, next){
 exports.logoutUser = function(req, res, next){
   //destroy session
   delete req.session.user;
-  
+
   res.redirect('login');
 }

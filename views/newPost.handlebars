@@ -1,3 +1,12 @@
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.3.0/css/material-fullpalette.min.css" />
+	<link rel="stylesheet" href="/css/main.css" />
+	<!--Chosen-->
+	<link rel="stylesheet" href="http://harvesthq.github.io/chosen/docsupport/style.css">
+	<link rel="stylesheet" href="http://harvesthq.github.io/chosen/docsupport/prism.css">
+	<link rel="stylesheet" href="http://harvesthq.github.io/chosen/chosen.css">
+</head>
+
 <div class="container">
 	<form class="postForm" action='/posts/new' method="POST">
 
@@ -9,11 +18,44 @@
           <h4>Article Body</h4>
   				<textarea style="width:40em" class="bodyForm" type="text" name="content" placeholder="Article Body"></textarea>
         <br/>
+				<br/>
+				<div>
+					<em>Topic Tags</em>
+					<select data-placeholder="Choose a Topic Tag..." class="chosen-select" multiple style="width:350px;" tabindex="4">
+						<option value=""></option>
+						<option value="Javascript">Javascript</option>
+						<option value="Python">Python</option>
+						<option value="HTML">HTML</option>
+						<option value="CSS">CSS</option>
+						<option value="jQuery">jQuery</option>
+						<option value="MySQL">MySQL</option>
+						<option value="Mongodb">Mongodb</option>
+					</select>
+				</div>
+		</div>
         <br/>
           <button type="submit">Submit</button>
-
+					<input type="file" id="uploadme" />
+					<input type="button" id="clickme" value="Upload file!" />
 			</div><!-- /.well -->
 
 
 	</form><!-- /.row -->
-</div><!-- /.container -->
+	</div><!-- /.container -->
+
+	<!--Chosen-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+	<script src="http://harvesthq.github.io/chosen/chosen.jquery.js" type="text/javascript"></script>
+	<script src="http://harvesthq.github.io/chosen/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var config = {
+			'.chosen-select'           : {},
+			'.chosen-select-deselect'  : {allow_single_deselect:true},
+			'.chosen-select-no-single' : {disable_search_threshold:10},
+			'.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+			'.chosen-select-width'     : {width:"95%"}
+		}
+		for (var selector in config) {
+			$(selector).chosen(config[selector]);
+		}
+	</script>
