@@ -1,0 +1,1 @@
+{ "options" : { "create" : "resource.Comments" }, "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "resource.Comments", "name" : "_id_" } ] }

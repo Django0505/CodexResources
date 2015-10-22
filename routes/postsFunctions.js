@@ -1,8 +1,8 @@
 var MongoClient = require('mongodb').MongoClient;
+var io = require('socket.io');
 
 //Connect to mongodb [ConnectionURL]
 var url = 'mongodb://localhost:27017/CodeXsource';
-
 
 exports.postArticle = function(req, res, next){
 
@@ -42,6 +42,7 @@ exports.showPosts = function(req, res, next){
 
 		var articles = db.collection('Articles');
 		var topics = db.collection('Topics');
+
 		// Insert some documents
 		articles
 			.find()
@@ -166,6 +167,7 @@ exports.commentOnPost = function(req, res, next){
 
 		var topics = db.collection('Topics');
 		topics.find({}).toArray().then(function(results){
+
 			if(err){
 				 console.log(err);
 			}

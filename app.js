@@ -1,5 +1,7 @@
 var express = require('express');
-var app = express();
+var app = express(),
+    http = require('http').Server(app),
+    io = require('socket.io')(http);
 var http = require('http').Server(app);
 var exphbs  = require('express-handlebars'),
     MongoClient = require('mongodb').MongoClient,
@@ -34,9 +36,8 @@ app.get('/signup', function(req, res, next){
 
 app.post('/signup', auth.addNewUser);
 
-//app.get('/showTopics', post.topicsToMenu)
-
 app.get('/home', auth.checkUser, post.showPosts);
+
 
 app.get('/post/:heading', auth.checkUser, post.fullPost);
 app.post('/post/:heading', auth.checkUser, post.commentOnPost);
