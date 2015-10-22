@@ -40,19 +40,30 @@ exports.showPosts = function(req, res, next){
 		console.log(err,"\n");
 		}
 
-		var collection = db.collection('Articles');
+		var articles = db.collection('Articles');
+		var topics = db.collection('Topics');
 		// Insert some documents
-		collection.find().toArray(function(err, result) {
-			if (err) {
-				console.log(err);
-			}
-			// console.log(result);
+		articles
+			.find()
+			.toArray(function(err, articleList) {
+				if (err) {
+					console.log(err);
+				}
+				// console.log(result);
+				topics
+					.find()
+					.toArray(function(err, topicsList){
+						if (err) {
+							console.log(err);
+						}
 
-			db.close();
-				return res.render('home', {
-					article:result,
-					user:req.session.user
-				});
+						db.close();
+						return res.render('home', {
+							user:req.session.user,
+							article:articleList,
+							Topics: topicsList
+						});
+					});
 		});
 	});
 };
@@ -146,15 +157,15 @@ exports.commentOnPost = function(req, res, next){
 	});
 }
 
-exports.topicsToMenu = function(req, res, next){
+/* exports.topicsToMenu = function(req, res, next){
 
 	MongoClient.connect(url, function(err, db){
 		if(err){
 			console.log(err, "/n");
 		}
 
-		var collection = db.collection('Topics');
-		collection.find({}).toArray().then(function(results){
+		var topics = db.collection('Topics');
+		topics.find({}).toArray().then(function(results){
 			if(err){
 				 console.log(err);
 			}
@@ -167,4 +178,4 @@ exports.topicsToMenu = function(req, res, next){
 
 		});
 	});
-}
+}*/

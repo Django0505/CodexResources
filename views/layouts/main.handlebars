@@ -30,7 +30,12 @@
 				<li>
 				    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Topics<span class="caret"></span></a>
 				    <ul class="dropdown-menu">
-				      <li><a href="#">{{Topics.name}}</a></li>
+							{{#Topics}}
+							  <li>
+									<a href="#">{{name}}</a>
+							  </li>
+							{{/Topics}}
+
 				      <!--<li><a href="#">CSS</a></li>
 				      <li><a href="#">JavaScript</a></li>-->
 				    </ul>

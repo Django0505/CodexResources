@@ -34,9 +34,9 @@ app.get('/signup', function(req, res, next){
 
 app.post('/signup', auth.addNewUser);
 
-app.get('/showTopics', post.topicsToMenu)
+//app.get('/showTopics', post.topicsToMenu)
 
-app.get('/home', auth.checkUser, post.showPosts, post.topicsToMenu);
+app.get('/home', auth.checkUser, post.showPosts);
 
 app.get('/post/:heading', auth.checkUser, post.fullPost);
 app.post('/post/:heading', auth.checkUser, post.commentOnPost);
