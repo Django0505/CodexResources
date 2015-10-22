@@ -17,10 +17,14 @@
 
 }
 
-.postForm input{
-	width: 70%;
-}
+/*postForm input{
+	width: 20%;
+}*/
 
 .bodyForm{
 	height: 7em;
+}
+
+input[type=file] {
+    visibility: hidden;
 }
